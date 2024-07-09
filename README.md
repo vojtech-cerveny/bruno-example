@@ -8,7 +8,7 @@
 * If you want to create new clinic with new patient, run `[001]`, `[004]` and `[005]`
 
 ## Execute in CLI
-* `bru run . --env qa5`
+* `npm run test`
 
 Example:
 ![](./images/cli.png)
