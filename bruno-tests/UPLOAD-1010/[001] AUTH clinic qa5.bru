@@ -15,6 +15,10 @@ auth:basic {
   password: {{clinicianPassword}}
 }
 
+assert {
+  res.status: eq 200
+}
+
 script:post-response {
   const sessionToken = res.getHeader("x-tidepool-session-token")
   bru.setEnvVar("sessionToken", sessionToken); 

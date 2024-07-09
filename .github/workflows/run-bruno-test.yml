@@ -1,0 +1,40 @@
+name: Bru CLI Tests (npm)
+
+on:
+  workflow_dispatch:
+    inputs:
+      build:
+        description: 'Test Bru CLI (npm)'
+        required: true
+        default: 'true'
+
+jobs:
+  test:
+    name: CLI Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: 20
+        env:
+          CLINICIAN_EMAIL: ${{ secrets.CLINICIAN_EMAIL }}
+          CLINICIAN_PASSWORD: ${{ secrets.CLINICIAN_PASSWORD }}
+
+      - name: Install Bru CLI from NPM
+        run: npm install
+
+      - name: Display Bru CLI Version
+        run: bru --version
+
+      - name: Run tests
+        run: |
+          npm run test:ci
+
+      - name: Publish Test Report
+        uses: dorny/test-reporter@v1
+        if: success() || failure()
+        with:
+          name: Test Report
+          path: bruno-tests/UPLOAD-1010/junit.xml
+          reporter: java-junit

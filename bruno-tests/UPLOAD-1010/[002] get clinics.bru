@@ -15,6 +15,10 @@ params:query {
   offset: 0
 }
 
+assert {
+  res.status: eq 200
+}
+
 script:pre-request {
   req.setHeader( "X-Tidepool-Session-Token", bru.getEnvVar("sessionToken"));
 }

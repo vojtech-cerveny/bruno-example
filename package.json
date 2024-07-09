@@ -1,0 +1,17 @@
+{
+  "name": "upload-1010",
+  "version": "1.0.0",
+  "description": "## Setup * Create env file `cp .env.example .env` * Fill env file with auth of clinician",
+  "main": "index.js",
+  "scripts": {
+    "pretest": "cp .env bruno-tests/UPLOAD-1010/.env",
+    "test": "cd bruno-tests/UPLOAD-1010 && bru run  --tests-only --env qa5",
+    "test:ci": "cd bruno-tests/UPLOAD-1010 && bru run --tests-only --env qa5 --output junit.xml --format junit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@usebruno/cli": "^1.20.1"
+  }
+}

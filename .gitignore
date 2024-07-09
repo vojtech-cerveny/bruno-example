@@ -1,1 +1,4 @@
 .env
+node_modules
+junit.xml
+.DS_Store
