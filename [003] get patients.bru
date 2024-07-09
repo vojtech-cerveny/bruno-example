@@ -1,0 +1,15 @@
+meta {
+  name: [003] get patients
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{baseUrl}}/v1/clinics/667e6740e3af2a05cffc42c1/patients
+  body: none
+  auth: none
+}
+
+script:pre-request {
+  req.setHeader( "X-Tidepool-Session-Token", bru.getEnvVar("sessionToken"));
+}

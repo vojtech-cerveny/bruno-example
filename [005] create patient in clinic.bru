@@ -1,0 +1,30 @@
+meta {
+  name: [005] create patient in clinic
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{baseUrl}}/v1/clinics/{{newClinicId}}/patients
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    //   "email": "user@example.com",
+    "fullName": "CareSens Dual",
+    "birthDate": "2012-08-30",
+    "permissions": {
+      "custodian": {},
+      "view": {},
+      "note": {},
+      "upload": {}
+    },
+    "attestationSubmitted": true
+  }
+}
+
+script:pre-request {
+  req.setHeader( "X-Tidepool-Session-Token", bru.getEnvVar("sessionToken"));
+}

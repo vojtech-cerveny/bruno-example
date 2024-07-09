@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "UPLOAD-1010",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

@@ -1,0 +1,52 @@
+meta {
+  name: [004] create clinic
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{baseUrl}}/v1/clinics
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "address": "string",
+    "city": "Palo Alto",
+    "postalCode": "94301",
+    "state": "CA",
+    "country": "USA",
+    "patientTags": [
+      {
+        "name": "string"
+      }
+    ],
+    "lastDeletedPatientTag": {
+      "name": "string"
+    },
+    "phoneNumbers": [
+      {
+        "type": "main",
+        "number": "+1 (555) 555-1212"
+      }
+    ],
+    "clinicType": "provider_practice",
+    "clinicSize": "0-249",
+    "name": "Test from API",
+    "website": "http://example.com",
+    "preferredBgUnits": "mg/dL",
+    "suppressedNotifications": {
+      "patientClinicInvitation": true
+    },
+    "timezone": "Etc/GMT"
+  }
+}
+
+script:pre-request {
+  req.setHeader( "X-Tidepool-Session-Token", bru.getEnvVar("sessionToken"));
+}
+
+script:post-response {
+  bru.setEnvVar("newClinicId", res.body.id)
+}

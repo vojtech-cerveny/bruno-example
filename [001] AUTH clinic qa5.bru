@@ -1,0 +1,22 @@
+meta {
+  name: [001] AUTH clinic qa5
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/auth/login
+  body: none
+  auth: basic
+}
+
+auth:basic {
+  username: {{clinicianEmail}}
+  password: {{clinicianPassword}}
+}
+
+script:post-response {
+  const sessionToken = res.getHeader("x-tidepool-session-token")
+  bru.setEnvVar("sessionToken", sessionToken); 
+  bru.setEnvVar("clinicianId", res.body.userid)
+}

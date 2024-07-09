@@ -1,0 +1,20 @@
+meta {
+  name: [002] get clinics
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/v1/clinicians/{{clinicianId}}/clinics?limit=1000&offset=0
+  body: none
+  auth: none
+}
+
+params:query {
+  limit: 1000
+  offset: 0
+}
+
+script:pre-request {
+  req.setHeader( "X-Tidepool-Session-Token", bru.getEnvVar("sessionToken"));
+}
