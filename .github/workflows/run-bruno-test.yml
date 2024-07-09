@@ -32,7 +32,7 @@ jobs:
           echo "CLINICIAN_PASSWORD=${{ secrets.CLINICIAN_PASSWORD }}" >> bruno-tests/UPLOAD-1010/.env
       - name: Run tests
         run: |
-          npm run test:ci
+          export $(grep -v '^#' bruno-tests/UPLOAD-1010/.env | xargs) && npm run test:ci
 
       - name: Publish Test Report
         uses: dorny/test-reporter@v1
