@@ -27,9 +27,6 @@ jobs:
       - name: Install Bru CLI from NPM
         run: npm install
 
-      - name: Display Bru CLI Version
-        run: bru --version
-
       - name: Run tests
         run: |
           npm run test:ci
