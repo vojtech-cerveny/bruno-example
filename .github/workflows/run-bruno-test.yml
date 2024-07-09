@@ -28,8 +28,8 @@ jobs:
         run: npm install
       - name: Create .env file
         run: |
-          echo "CLINICIAN_EMAIL=$CLINICIAN_EMAIL" >> bruno-tests/UPLOAD-1010/.env
-          echo "CLINICIAN_PASSWORD=$CLINICIAN_PASSWORD" >> bruno-tests/UPLOAD-1010/.env
+          echo "CLINICIAN_EMAIL=${{ secrets.CLINICIAN_EMAIL }}" >> bruno-tests/UPLOAD-1010/.env
+          echo "CLINICIAN_PASSWORD=${{ secrets.CLINICIAN_PASSWORD }}" >> bruno-tests/UPLOAD-1010/.env
       - name: Run tests
         run: |
           npm run test:ci
