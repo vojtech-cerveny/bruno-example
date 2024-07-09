@@ -9,7 +9,7 @@ on:
         default: 'true'
   push:
     branches:
-      - main
+      - master
 
 jobs:
   test:
@@ -26,7 +26,10 @@ jobs:
 
       - name: Install Bru CLI from NPM
         run: npm install
-
+      - name: Create .env file
+        run: |
+          echo "CLINICIAN_EMAIL=$CLINICIAN_EMAIL" >> bruno-tests/UPLOAD-1010/.env
+          echo "CLINICIAN_PASSWORD=$CLINICIAN_PASSWORD" >> bruno-tests/UPLOAD-1010/.env
       - name: Run tests
         run: |
           npm run test:ci
