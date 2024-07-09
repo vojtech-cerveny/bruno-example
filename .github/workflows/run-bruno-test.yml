@@ -11,6 +11,13 @@ on:
     branches:
       - master
 
+permissions:
+  statuses: write
+  checks: write
+  contents: write
+  pull-requests: write
+  actions: write
+
 jobs:
   test:
     name: CLI Tests
@@ -30,11 +37,9 @@ jobs:
         run: |
           echo "CLINICIAN_EMAIL=${{ secrets.CLINICIAN_EMAIL }}" >> bruno-tests/UPLOAD-1010/.env
           echo "CLINICIAN_PASSWORD=${{ secrets.CLINICIAN_PASSWORD }}" >> bruno-tests/UPLOAD-1010/.env
-          ls bruno-tests/UPLOAD-1010/
-          cat bruno-tests/UPLOAD-1010/.env
       - name: Run tests
         run: |
-          export $(grep -v '^#' bruno-tests/UPLOAD-1010/.env | xargs) && npm run test:ci
+          npm run test:ci
       - name: Publish Test Report
         uses: dorny/test-reporter@v1
         if: success() || failure()
